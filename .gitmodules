@@ -1,0 +1,6 @@
+[submodule "src/armando_controller"]
+	path = src/armando_controller
+	url = https://github.com/GV-ing/armando_controller
+[submodule "src/armando_description"]
+	path = src/armando_description
+	url = https://github.com/GV-ing/armando_description
