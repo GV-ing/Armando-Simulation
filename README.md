@@ -27,7 +27,7 @@ The repository is designed to provide a reproducible development environment bas
 
 ## 🧭 At-a-Glance Workflow
 
-```
+```mermaid
 flowchart LR
     A[Host Machine] --> B[Docker Scripts]
     B --> C[Containerized ROS 2 Humble Env]
