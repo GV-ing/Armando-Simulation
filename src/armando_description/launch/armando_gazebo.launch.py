@@ -135,32 +135,6 @@ def generate_launch_description():
     )
 
 
-    aruco_marker_publisher = Node(
-        package='aruco_ros',
-        executable='marker_publisher',
-        name='aruco_marker_publisher',
-        parameters=[{
-            #'image_is_rectified': True,
-            'marker_size': 0.1,
-            'reference_frame': 'base_link',
-            'camera_frame': 'camera_optical_frame',
-            'use_sim_time': True,
-            'dictionary': 'DICT_ARUCO_ORIGINAL',
-            
-            # --- PARAMETRI DI TUNING AGGIUNTIVI ---
-            'corner_refinement': 'SUBPIX', # Migliora la precisione dei bordi (fondamentale per pose estimation)
-            'min_marker_size': 0.02,       # Impedisce di scartare i marker se visti da lontano
-            'min_marker_distance': 0.01,   # Aiuta se i cubi sono vicini tra loro
-            # 'thresh_method': 'adaptive', # Opzionale: aiuta se ci sono ombre forti
-        }],
-        remappings=[
-            ('/camera_info', '/camera/camera_info'),
-            ('/image', '/camera/image_raw'),
-        ],
-        output='screen'
-    )
-
-
     # Event handlers: Avvio sequenziale dei controller
     load_joint_state_broadcaster = RegisterEventHandler(
         event_handler=OnProcessExit(
@@ -212,5 +186,4 @@ def generate_launch_description():
         load_joint_trajectory_controller,
         bridge_node,
         detach_cubes,
-        aruco_marker_publisher,
     ])

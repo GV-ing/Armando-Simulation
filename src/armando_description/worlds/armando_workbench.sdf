@@ -203,7 +203,7 @@
     </model>
     -->
 
-    <!-- OBSTACLE BOX A (Marker ID 0) -->
+    <!-- CLASSWORK TODO: choose a marker dictionary/ID and add a camera-visible marker to this object. -->
     <model name="obstacle_box_a">
       <static>false</static>
       <!-- Spostato da 0.2 a -0.25 -->
@@ -224,19 +224,6 @@
             <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
           </material>
         </visual>
-        <visual name="tag_visual">
-          <pose>0 0 0.0501 0 0 0</pose>
-          <geometry><box><size>0.10 0.10 0.001</size></box></geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0 0 0 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://aruco_cube_0/materials/textures/aruco_tag_0.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
       </link>
       <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
         <publish_link_pose>true</publish_link_pose>
@@ -249,7 +236,7 @@
       </plugin>
     </model>
 
-    <!-- OBSTACLE BOX B (Marker ID 1) -->
+    <!-- CLASSWORK TODO: add another marker, documenting its dictionary and ID. -->
     <model name="obstacle_box_b">
       <static>false</static>
       <!-- Spostato da 0.55 a 0.10 -->
@@ -270,19 +257,6 @@
             <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
           </material>
         </visual>
-        <visual name="tag_visual">
-          <pose>0 0 0.0501 0 0 0</pose>
-          <geometry><box><size>0.10 0.10 0.001</size></box></geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0 0 0 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://aruco_cube_1/materials/textures/aruco_tag_1.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
       </link>
       <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
         <publish_link_pose>true</publish_link_pose>
@@ -291,7 +265,7 @@
       </plugin>
     </model>
 
-    <!-- OBSTACLE BOX C (Marker ID 2) -->
+    <!-- CLASSWORK TODO: optionally place this marker flat on a surface facing upward. -->
     <model name="obstacle_box_c">
       <static>false</static>
       <!-- Spostato da 0.15 a -0.30 -->
@@ -312,19 +286,6 @@
             <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
           </material>
         </visual>
-        <visual name="tag_visual">
-          <pose>0 0 0.0501 0 0 0</pose>
-          <geometry><box><size>0.10 0.10 0.001</size></box></geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0 0 0 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://aruco_cube_2/materials/textures/aruco_tag_2.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
       </link>
       <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
         <publish_link_pose>true</publish_link_pose>
@@ -333,7 +294,7 @@
       </plugin>
     </model>
 
-    <!-- OBSTACLE BOX D (Marker ID 3) -->
+    <!-- CLASSWORK TODO: check visibility and pose estimation for the chosen placement. -->
     <model name="obstacle_box_d">
       <static>false</static>
       <pose>0.12 0.12 0.455 0 0 0.785398</pose>
@@ -351,19 +312,6 @@
           <geometry><box><size>0.10 0.10 0.10</size></box></geometry>
           <material>
             <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
-          </material>
-        </visual>
-        <visual name="tag_visual">
-          <pose>0 0 0.0501 0 0 0</pose>
-          <geometry><box><size>0.10 0.10 0.001</size></box></geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0 0 0 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://aruco_cube_3/materials/textures/aruco_tag_3.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>

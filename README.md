@@ -16,6 +16,11 @@
 
 This repository contains the core packages used to simulate **Armando**, a 4-DOF robotic arm developed for educational and research purposes.
 
+The `didactic-armando-starter` branch is the student starter for the
+camera-based ArUco classwork. Its task brief and acceptance criteria are in
+[`KDL_IK_CLASSWORK.md`](./KDL_IK_CLASSWORK.md); the completed reference solution
+is kept separately on `didactic-armando-integrated`.
+
 The project has two main goals:
 
 1. **Technical reference**: document the software architecture and runtime logic of the robotic arm in a ROS 2 Humble environment.
@@ -228,4 +233,7 @@ ros2 launch armando_description armando_rviz.launch.py
 ros2 launch armando_description armando_gazebo.launch.py
 ```
 
-Now Armando is running inside the simulation environment. You can send it to predefined poses, run automated Pick & Place sequences, or use the IK node with ArUco marker tracking as described above.
+Now Armando is running inside the simulation environment. You can send it to
+predefined poses, run automated Pick & Place sequences, or run the provided
+generic KDL IK solver. Completing camera-based ArUco tracking is the goal of
+the classwork brief.
