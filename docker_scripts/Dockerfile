@@ -72,11 +72,6 @@ RUN apt-get update -o Acquire::Retries=5 && apt-get install -y --no-install-reco
     ros-humble-moveit-ros-move-group \
     ros-humble-moveit-plugins \
     ros-humble-moveit-kinematics \
-    ros-humble-aruco-ros \
-    ros-humble-aruco-msgs \
-    ros-humble-cv-bridge \
-    ros-humble-vision-opencv \
-    python3-opencv \
     && rm -rf /var/lib/apt/lists/*
 
 # Build workspace

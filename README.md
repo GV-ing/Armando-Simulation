@@ -16,11 +16,6 @@
 
 This repository contains the core packages used to simulate **Armando**, a 4-DOF robotic arm developed for educational and research purposes.
 
-The `didactic-armando-starter` branch is the student starter for the
-camera-based ArUco classwork. Its task brief and acceptance criteria are in
-[`KDL_IK_CLASSWORK.md`](./KDL_IK_CLASSWORK.md); the completed reference solution
-is kept separately on `didactic-armando-integrated`.
-
 The project has two main goals:
 
 1. **Technical reference**: document the software architecture and runtime logic of the robotic arm in a ROS 2 Humble environment.
@@ -127,14 +122,15 @@ ros2 launch armando_description armando_rviz.launch.py
 
 ### armando_controller
 
-This package implements the control logic for the Armando robot. It provides three distinct control modes, from simple predefined poses to full visual servoing via inverse kinematics.
+This package provides named joint-pose control, a timed pick-and-place
+trajectory sequence, and a generic Cartesian target solver.
 
 #### Main contents
 
 - **`src/`**: C++ source files for controller nodes.
 - **`include/`**: C++ header files.
 - **`config/`**: YAML configuration files for poses and controller parameters.
-- **`launch/`**: launch files for complex control pipelines (e.g., IK with camera).
+- **`launch/`**: launch files for controller configurations such as KDL IK.
 - **`CMakeLists.txt`** and **`package.xml`**: build configuration and package metadata.
 
 #### Control modes
@@ -151,39 +147,38 @@ ros2 run armando_controller armando_controller_node --ros-args -p pose:="pos0"
 
 **2. Automated Pick & Place**
 
-Executes a timed, automated Pick & Place sequence. The robot moves between predefined poses and activates or deactivates Gazebo gripper plugins to grab and release objects.
+Executes a timed sequence of joint trajectories and publishes gripper
+attach/detach commands.
 
 ```bash
 ros2 run armando_controller armando_pick_place_node
 ```
 
-Manual gripper control is also available via topics:
+The current Gazebo world has no graspable objects or matching gripper plugins,
+so the sequence's attach/detach commands have no effect unless these are added.
+
+**3. KDL Inverse Kinematics**
+
+The generic KDL node subscribes to `/target_pose` (`geometry_msgs/msg/PoseStamped`),
+uses the pose's XYZ position as its target, checks the URDF joint limits, and
+sends a trajectory to the controller. End-effector orientation is not
+constrained.
 
 ```bash
-# Attach cube A (ID 0)
-ros2 topic pub --once /gripper/attach_a std_msgs/msg/Empty "{}"
-
-# Detach cube A (ID 0)
-ros2 topic pub --once /gripper/detach_a std_msgs/msg/Empty "{}"
+ros2 launch armando_controller armando_ik_kdl.launch.py
 ```
 
-> Cube mapping: `a = ID 0`, `b = ID 1`, `c = ID 2`, `d = ID 3`.
-
-**3. Dynamic IK Control**
-
-Uses analytical Inverse Kinematics to reach targets (ArUco markers) detected by the onboard camera. The target can be changed at runtime without restarting the node.
+Publish a target pose (the example is expressed in `base_link`):
 
 ```bash
-ros2 launch armando_controller armando_ik.launch.py
+ros2 topic pub --once /target_pose geometry_msgs/msg/PoseStamped \
+  "{header: {frame_id: base_link}, pose: {position: {x: 0.2, y: 0.0, z: 0.3}, orientation: {w: 1.0}}}"
 ```
 
-To change the tracked target at runtime:
-
-```bash
-ros2 param set /armando_ik_node target_id 2
-```
-
-> Use the desired marker ID, or `-1` to return the arm to the Home position.
+The simulation and trajectory controller must be running first. The launch
+starts the KDL solver and supplies the expanded robot description. The
+standalone node can also be run with `ros2 run`, provided `robot_description`
+is supplied as a parameter.
 
 #### Useful commands
 
@@ -234,6 +229,5 @@ ros2 launch armando_description armando_gazebo.launch.py
 ```
 
 Now Armando is running inside the simulation environment. You can send it to
-predefined poses, run automated Pick & Place sequences, or run the provided
-generic KDL IK solver. Completing camera-based ArUco tracking is the goal of
-the classwork brief.
+predefined joint poses, run the timed motion sequence, or use the generic KDL
+IK solver with a target pose published on `/target_pose`.

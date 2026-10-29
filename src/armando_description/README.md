@@ -21,8 +21,6 @@ Starts the visualization interface in RViz2. It subscribes to runtime topics suc
 ros2 launch armando_description armando_rviz.launch.py
 ```
 
-The Gazebo launch provides the robot simulation and bridges the camera image
-and camera calibration topics. The ArUco detector is intentionally not started
-by the starter workspace: configuring the marker scene, detection pipeline,
-and target-pose adapter is part of the classwork described in
-[`KDL_IK_CLASSWORK.md`](../../KDL_IK_CLASSWORK.md).
+The Gazebo launch starts the robot simulation, controller manager, and camera
+bridges. The workbench world contains the table and workspace but no movable
+objects; add compatible models if you need to test object interaction.

@@ -449,52 +449,6 @@
             <controller_manager_prefix_node_name>controller_manager</controller_manager_prefix_node_name>
         </plugin>
     </gazebo>
-
-
-    <!-- ==== PLUGIN PER AFFERRARE IL CUBO A ==== -->
-    <gazebo>
-        <plugin filename="gz-sim-detachable-joint-system" name="gz::sim::systems::DetachableJoint">
-            <parent_link>crawer_base</parent_link>
-            <child_model>obstacle_box_a</child_model>
-            <child_link>link</child_link>
-            <attach_topic>/gripper/attach_a</attach_topic>
-            <detach_topic>/gripper/detach_a</detach_topic>
-            <suppress_child_warning>true</suppress_child_warning>
-        </plugin>
-    </gazebo>
-
-    <!-- ==== PLUGIN PER AFFERRARE IL CUBO B ==== -->
-    <gazebo>
-        <plugin filename="gz-sim-detachable-joint-system" name="gz::sim::systems::DetachableJoint">
-            <parent_link>crawer_base</parent_link>
-            <child_model>obstacle_box_b</child_model>
-            <child_link>link</child_link>
-            <attach_topic>/gripper/attach_b</attach_topic>
-            <detach_topic>/gripper/detach_b</detach_topic>
-            <suppress_child_warning>true</suppress_child_warning>
-        </plugin>
-    </gazebo> 
-    <!-- ==== PLUGIN PER AFFERRARE IL CUBO C ==== -->
-    <gazebo>
-        <plugin filename="gz-sim-detachable-joint-system" name="gz::sim::systems::DetachableJoint">
-            <parent_link>crawer_base</parent_link>
-            <child_model>obstacle_box_c</child_model>
-            <child_link>link</child_link>
-            <attach_topic>/gripper/attach_c</attach_topic>
-            <detach_topic>/gripper/detach_c</detach_topic>
-        </plugin>
-    </gazebo>
-        <!-- ==== PLUGIN PER AFFERRARE IL CILINDRO D ==== -->
-    <gazebo>
-        <plugin filename="gz-sim-detachable-joint-system" name="gz::sim::systems::DetachableJoint">
-            <parent_link>crawer_base</parent_link>
-            <child_model>obstacle_box_d</child_model>
-            <child_link>link</child_link>
-            <attach_topic>/gripper/attach_d</attach_topic>
-            <detach_topic>/gripper/detach_d</detach_topic>
-        </plugin>
-    </gazebo>
-    
     <ros2_control name="HardwareInterface_Gazebo" type="system">
         <hardware>
             <plugin>gz_ros2_control/GazeboSimSystem</plugin>

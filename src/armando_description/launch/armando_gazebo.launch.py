@@ -6,7 +6,6 @@ from launch_ros.parameter_descriptions import ParameterValue
 from launch.event_handlers import OnProcessExit
 from ament_index_python.packages import get_package_share_directory
 from launch_ros.substitutions import FindPackageShare
-from launch.actions import TimerAction, ExecuteProcess
 import os
 
 def generate_launch_description():
@@ -114,17 +113,6 @@ def generate_launch_description():
         arguments=[
             '/camera@sensor_msgs/msg/Image@gz.msgs.Image',
             '/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo',
-            '/world/armando_workbench/dynamic_pose/info@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
-            
-            # Bridge per i comandi di presa 
-            '/gripper/attach_a@std_msgs/msg/Empty@gz.msgs.Empty',
-            '/gripper/detach_a@std_msgs/msg/Empty@gz.msgs.Empty',
-            '/gripper/attach_b@std_msgs/msg/Empty@gz.msgs.Empty',
-            '/gripper/detach_b@std_msgs/msg/Empty@gz.msgs.Empty',
-            '/gripper/attach_c@std_msgs/msg/Empty@gz.msgs.Empty',
-            '/gripper/detach_c@std_msgs/msg/Empty@gz.msgs.Empty',
-            '/gripper/attach_d@std_msgs/msg/Empty@gz.msgs.Empty',
-            '/gripper/detach_d@std_msgs/msg/Empty@gz.msgs.Empty',
         ],
         remappings=[
             ('/camera', '/camera/image_raw'),
@@ -133,8 +121,6 @@ def generate_launch_description():
         output='screen',
         parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
     )
-
-
     # Event handlers: Avvio sequenziale dei controller
     load_joint_state_broadcaster = RegisterEventHandler(
         event_handler=OnProcessExit(
@@ -150,29 +136,6 @@ def generate_launch_description():
         )
     )
 
-    # ==== AUTOMAZIONE: Sgancia i cubi all'avvio ====
-    detach_cubes = TimerAction(
-        period=5.0,  # Aspetta 5 secondi per dare tempo a Gazebo di caricare tutto
-        actions=[
-            ExecuteProcess(
-                cmd=['ros2', 'topic', 'pub', '--once', '/gripper/detach_a', 'std_msgs/msg/Empty', '{}'],
-                output='screen'
-            ),
-            ExecuteProcess(
-                cmd=['ros2', 'topic', 'pub', '--once', '/gripper/detach_b', 'std_msgs/msg/Empty', '{}'],
-                output='screen'
-            ),
-            ExecuteProcess(
-                cmd=['ros2', 'topic', 'pub', '--once', '/gripper/detach_c', 'std_msgs/msg/Empty', '{}'],
-                output='screen'
-            ),
-            ExecuteProcess(
-                cmd=['ros2', 'topic', 'pub', '--once', '/gripper/detach_d', 'std_msgs/msg/Empty', '{}'],
-                output='screen'
-            ),
-        ]
-    )
-
     return LaunchDescription([
         declare_use_sim_time,
         gz_resource_path,
@@ -185,5 +148,4 @@ def generate_launch_description():
         load_joint_state_broadcaster,
         load_joint_trajectory_controller,
         bridge_node,
-        detach_cubes,
     ])
