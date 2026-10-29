@@ -1,0 +1,378 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="armando_workbench">
+    <gravity>0 0 -9.81</gravity>
+
+    <!-- ===== Plugin di Sistema di Gazebo ===== -->
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"/>
+
+    <!-- ===== Impostazioni GUI e Telecamera ===== -->
+    <gui fullscreen="0">
+      <plugin filename="GzScene3D" name="3D View">
+        <gz-gui>
+          <title>3D View</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">docked</property>
+        </gz-gui>
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <ambient_light>0.4 0.4 0.4</ambient_light>
+        <background_color>0.8 0.8 0.8</background_color>
+        <camera_pose>1 1 1 0 0.5 -2.3</camera_pose>
+        <camera_clip>
+          <near>0.01</near>
+          <far>100</far>
+        </camera_clip>
+      </plugin>
+    </gui>
+
+    <!-- ===== Illuminazione ===== -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <!-- ===== Modelli Statici (Tavolo e separatori) ===== -->
+    <model name="workbench">
+      <static>true</static>
+      <!-- Spostato da 0.45 a 0.0 -->
+      <pose>0.0 0.0 0.375 0 0 0</pose>
+      <link name="top">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.0 0.7 0.05</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.0 0.7 0.05</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.45 0.33 0.22 1</ambient>
+            <diffuse>0.55 0.4 0.25 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="quad_nw_red">
+      <static>true</static>
+      <!-- Spostato da 0.20 a -0.25 -->
+      <pose>-0.25 0.175 0.4015 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.50 0.35 0.003</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.50 0.35 0.003</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.12 0.12 1</ambient>
+            <diffuse>0.85 0.16 0.16 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="quad_ne_cyan">
+      <static>true</static>
+      <!-- Spostato da 0.70 a 0.25 -->
+      <pose>0.25 0.175 0.4015 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.50 0.35 0.003</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.50 0.35 0.003</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.12 0.65 0.65 1</ambient>
+            <diffuse>0.16 0.75 0.75 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="quad_sw_blue">
+      <static>true</static>
+      <!-- Spostato da 0.20 a -0.25 -->
+      <pose>-0.25 -0.175 0.4015 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.50 0.35 0.003</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.50 0.35 0.003</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.20 0.78 1</ambient>
+            <diffuse>0.14 0.24 0.85 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="quad_se_orange">
+      <static>true</static>
+      <!-- Spostato da 0.70 a 0.25 -->
+      <pose>0.25 -0.175 0.4015 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.50 0.35 0.003</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.50 0.35 0.003</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 0.44 0.10 1</ambient>
+            <diffuse>0.90 0.50 0.14 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- 4 separatori disposti a croce dal centro verso i bordi del tavolo (Aggiornati) -->
+    <!-- 
+    <model name="separator_1">
+      <static>true</static>
+      <pose>0.0 0.225 0.475 0 0 0</pose>
+      ...
+    </model>
+    <model name="separator_2">
+      <static>true</static>
+      <pose>0.0 -0.225 0.475 0 0 0</pose>
+      ...
+    </model>
+    <model name="separator_3">
+      <static>true</static>
+      <pose>-0.30 0.0 0.475 0 0 0</pose>
+      ...
+    </model>
+    <model name="separator_4">
+      <static>true</static>
+      <pose>0.30 0.0 0.475 0 0 0</pose>
+      ...
+    </model>
+    -->
+
+    <!-- OBSTACLE BOX A (Marker ID 0) -->
+    <model name="obstacle_box_a">
+      <static>false</static>
+      <!-- Spostato da 0.2 a -0.25 -->
+      <pose>-0.12 -0.12 0.455 0 0 0.785398</pose>
+      <link name="link">
+        <inertial>
+          <mass>0.5</mass>
+          <inertia>
+            <ixx>0.000767</ixx><iyy>0.000767</iyy><izz>0.000767</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry><box><size>0.10 0.10 0.10</size></box></geometry>
+        </collision>
+        <visual name="body_visual">
+          <geometry><box><size>0.10 0.10 0.10</size></box></geometry>
+          <material>
+            <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <visual name="tag_visual">
+          <pose>0 0 0.0501 0 0 0</pose>
+          <geometry><box><size>0.10 0.10 0.001</size></box></geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://aruco_cube_0/materials/textures/aruco_tag_0.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+      <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
+        <publish_link_pose>true</publish_link_pose>
+        <publish_sensor_pose>false</publish_sensor_pose>
+        <publish_collision_pose>false</publish_collision_pose>
+        <publish_visual_pose>false</publish_visual_pose>
+        <publish_nested_model_pose>false</publish_nested_model_pose>
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <update_frequency>10</update_frequency>
+      </plugin>
+    </model>
+
+    <!-- OBSTACLE BOX B (Marker ID 1) -->
+    <model name="obstacle_box_b">
+      <static>false</static>
+      <!-- Spostato da 0.55 a 0.10 -->
+      <pose>0.12 -0.12 0.455 0 0 0.785398</pose>
+      <link name="link">
+        <inertial>
+          <mass>0.4</mass>
+          <inertia>
+            <ixx>0.000427</ixx><iyy>0.000427</iyy><izz>0.000427</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry><box><size>0.10 0.10 0.10</size></box></geometry>
+        </collision>
+        <visual name="body_visual">
+          <geometry><box><size>0.10 0.10 0.10</size></box></geometry>
+          <material>
+            <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <visual name="tag_visual">
+          <pose>0 0 0.0501 0 0 0</pose>
+          <geometry><box><size>0.10 0.10 0.001</size></box></geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://aruco_cube_1/materials/textures/aruco_tag_1.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+      <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
+        <publish_link_pose>true</publish_link_pose>
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <update_frequency>10</update_frequency>
+      </plugin>
+    </model>
+
+    <!-- OBSTACLE BOX C (Marker ID 2) -->
+    <model name="obstacle_box_c">
+      <static>false</static>
+      <!-- Spostato da 0.15 a -0.30 -->
+      <pose>-0.12 0.12 0.450 0 0 0.785398</pose>
+      <link name="link">
+        <inertial>
+          <mass>0.3</mass>
+          <inertia>
+            <ixx>0.000245</ixx><iyy>0.000245</iyy><izz>0.000245</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry><box><size>0.10 0.10 0.10</size></box></geometry>
+        </collision>
+        <visual name="body_visual">
+          <geometry><box><size>0.10 0.10 0.10</size></box></geometry>
+          <material>
+            <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <visual name="tag_visual">
+          <pose>0 0 0.0501 0 0 0</pose>
+          <geometry><box><size>0.10 0.10 0.001</size></box></geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://aruco_cube_2/materials/textures/aruco_tag_2.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+      <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
+        <publish_link_pose>true</publish_link_pose>
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <update_frequency>10</update_frequency>
+      </plugin>
+    </model>
+
+    <!-- OBSTACLE BOX D (Marker ID 3) -->
+    <model name="obstacle_box_d">
+      <static>false</static>
+      <pose>0.12 0.12 0.455 0 0 0.785398</pose>
+      <link name="link">
+        <inertial>
+          <mass>0.3</mass>
+          <inertia>
+            <ixx>0.000245</ixx><iyy>0.000245</iyy><izz>0.000245</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry><box><size>0.10 0.10 0.10</size></box></geometry>
+        </collision>
+        <visual name="body_visual">
+          <geometry><box><size>0.10 0.10 0.10</size></box></geometry>
+          <material>
+            <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <visual name="tag_visual">
+          <pose>0 0 0.0501 0 0 0</pose>
+          <geometry><box><size>0.10 0.10 0.001</size></box></geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://aruco_cube_3/materials/textures/aruco_tag_3.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+      <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
+        <publish_link_pose>true</publish_link_pose>
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <update_frequency>10</update_frequency>
+      </plugin>
+    </model>
+
+  </world>
+</sdf>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+    File di assemblaggio del robot Armando.
+    Per escludere la camera dal modello, commentare la riga:
+        <xacro:include filename="armando_camera.urdf.xacro"/>
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="armando">
+
+    <!-- Link world per fissare il robot -->
+    <link name="world"/>
+    
+    <!-- Joint fisso che ancora il robot al world (impedisce spostamenti) -->
+    <joint name="world_to_base" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Corpo del robot, plugin Gazebo e ros2_control -->
+    <xacro:include filename="armando_body.urdf.xacro"/>
+
+    <!-- Camera end-effector - commentare per escludere dal modello -->
+    <xacro:include filename="armando_camera.urdf.xacro"/>
+
+</robot>

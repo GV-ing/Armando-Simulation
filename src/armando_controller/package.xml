@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>armando_controller</name>
+  <version>0.0.0</version>
+  <description>Controller package for Armando robot</description>
+  <maintainer email="g.vestri2904@gmail.com">Giulio Vestri</maintainer>
+  <license>TODO: License</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>rclcpp</build_depend>
+  <build_depend>rclcpp_action</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>control_msgs</build_depend>
+  <build_depend>trajectory_msgs</build_depend>
+  <build_depend>yaml-cpp</build_depend>
+
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>kdl_parser</depend>
+  <depend>orocos_kdl</depend>
+  <depend>urdf</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_kdl</depend>
+  <depend>tf2_geometry_msgs</depend>
+  <depend>aruco_msgs</depend>
+  
+  <exec_depend>rclcpp</exec_depend>
+  <exec_depend>rclcpp_action</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>control_msgs</exec_depend>
+  <exec_depend>trajectory_msgs</exec_depend>
+  <exec_depend>yaml-cpp</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

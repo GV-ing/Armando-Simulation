@@ -1,0 +1,57 @@
+# Predefined robot poses for Armando
+poses:
+### HOME POSITION
+  home:
+    positions: [0, 0, 0, 0]
+####
+## Sequence of poses for pick and place operations
+  pos0:
+    positions: [-0.854, 1.035, 2.105, -1.621]
+  pos1:
+    positions: [-0.854, 1.300, 1.0, -0.6]
+  # ATTACH A
+  # ros2 topic pub --once /gripper/attach_a std_msgs/msg/Empty "{}"
+  pos2:
+    positions: [-0.854, 0, 0, 0]
+  pos3:
+    positions: [-2.1, 1, 0.25, 0.25]
+  # DETACH A
+  # ros2 topic pub --once /gripper/detach_a std_msgs/msg/Empty "{}"
+  pos4:
+    positions: [0.854, 0, 0, 0]
+  pos5:
+    positions: [0.854, 1.035, 1.105, 1]
+  # ATTACH B
+  # ros2 topic pub --once /gripper/attach_b std_msgs/msg/Empty "{}"
+  pos6:
+    positions: [-0.854, 0, 0, 0]
+  pos7:
+    positions: [-0.854, 0.80, 0.45, 0.25]
+  # DETACH B
+  # ros2 topic pub --once /gripper/detach_b std_msgs/msg/Empty "{}"
+  pos8:
+    positions: [-2.03, 0, 0, 0]
+  pos9:
+    positions: [-1.9, 1.4, 0.50, 0.30]
+  # ATTACH C
+  # ros2 topic pub --once /gripper/attach_c std_msgs/msg/Empty "{}"
+  pos10:
+    positions: [-2, 0, 0, 0]
+  pos11:
+    positions: [0.8, 0.5, 0.5, 0.5]
+  # DETACH C
+  # ros2 topic pub --once /gripper/detach_c std_msgs/msg/Empty "{}"
+  pos12:
+    positions: [2.354, 0, 0, 0]
+  pos13:
+    positions: [2.354, 0.5, 1.5, 1.3]
+  # ATTACH D
+  # ros2 topic pub --once /gripper/attach_d std_msgs/msg/Empty "{}"
+  pos14:
+    positions: [1.9, 0, 0, 0]
+  pos15:
+    positions: [-0.854, 1.300, 0.0, -0.6]
+  # DETACH D
+  # ros2 topic pub --once /gripper/detach_d std_msgs/msg/Empty "{}"
+  pos16:
+    positions: [0, 0, 0, 0]
